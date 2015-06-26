@@ -1,4 +1,5 @@
-﻿using RetrIoc.Injection;
+﻿using System;
+using RetrIoc.Injection;
 
 namespace RetrIoc.Configuration
 {
@@ -8,6 +9,7 @@ namespace RetrIoc.Configuration
 
         public RetrIocConfiguration(IResolveTypes typeResolver)
         {
+            if (typeResolver == null) throw new ArgumentNullException("typeResolver");
             TypeResolver = typeResolver;
         }
     }
