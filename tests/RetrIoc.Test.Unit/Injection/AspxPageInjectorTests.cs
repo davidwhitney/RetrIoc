@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection;
 using NUnit.Framework;
 using RetrIoc.Configuration;
 using RetrIoc.Injection;
@@ -34,6 +36,25 @@ namespace RetrIoc.Test.Unit.Injection
 
             Assert.That(_somePage.Class, Is.Not.Null);
         }
+
+        [Test]
+        public void InjectInto_WithWorkingContainer_InjectsPrivateProperties()
+        {
+            _module.InjectInto(_somePage);
+
+            var class2 = _somePage.GetType().GetProperty("Class2", BindingFlags.Instance | BindingFlags.NonPublic);
+            Assert.That(class2.GetValue(_somePage), Is.Not.Null);
+        }
+
+        //TODO: Implement field injection
+        //[Test]
+        //public void InjectInto_WithWorkingContainer_InjectsPrivateFields()
+        //{
+        //    _module.InjectInto(_somePage);
+
+        //    var field = _somePage.GetType().GetField("_class3", BindingFlags.Instance | BindingFlags.NonPublic);
+        //    Assert.That(field.GetValue(_somePage), Is.Not.Null);
+        //}
 
         [Test]
         public void InjectInto_PageWithUserControl_InjectsIntoUserControl()
