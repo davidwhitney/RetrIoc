@@ -9,6 +9,9 @@ namespace WebFormsApp
         [Inject]
         public MyClass RandomDependency { get; set; }
 
+        [Inject]
+        public MyClass RandomDependency2 { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 

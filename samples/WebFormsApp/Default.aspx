@@ -10,7 +10,8 @@
 <body>
     <form id="form1" runat="server">
     <div>
-    MyRandomDependency says <%=RandomDependency.Id %>
+    MyRandomDependency says <%=RandomDependency.Id %><br/>
+    MyRandomDependency2 says <%=RandomDependency2.Id %>
     </div>
     </form>
 </body>
