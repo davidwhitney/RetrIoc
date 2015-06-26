@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Web.UI;
 using RetrIoc.Configuration;
 
@@ -9,12 +8,14 @@ namespace RetrIoc.Injection
     public class AspxPageInjector
     {
         private readonly RetrIocConfiguration _cfg;
+        private readonly InjectionMap _injectionMap;
 
         public AspxPageInjector(RetrIocConfiguration cfg)
         {
             if (cfg == null) throw new ArgumentNullException("cfg");
 
             _cfg = cfg;
+            _injectionMap = new InjectionMap();
         }
 
         public void InjectInto(Control control)
@@ -24,7 +25,7 @@ namespace RetrIoc.Injection
                 throw new InvalidOperationException("Please configure your container bindings.");
             }
 
-            var injectTheseProperties = GetProperties(control.GetType());
+            var injectTheseProperties = _injectionMap.Lookup(control.GetType());
             foreach (var property in injectTheseProperties)
             {
                 var instance = _cfg.TypeResolver.Resolve(property.PropertyType);
@@ -47,25 +48,6 @@ namespace RetrIoc.Injection
                     yield return c;
                 }
             }
-        }
-
-        private static IEnumerable<PropertyInfo> GetProperties(IReflect type)
-        {
-            var allInstanceProperties = type.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-            var propsFound = new List<PropertyInfo>();
-
-            foreach (var pi in allInstanceProperties)
-            {
-                var allAttributesOnProperty = pi.GetCustomAttributes(true);
-                foreach (var attr in allAttributesOnProperty)
-                {
-                    if (attr.GetType() != typeof(InjectAttribute)) continue;
-                    propsFound.Add(pi);
-                    break;
-                }
-            }
-
-            return propsFound;
         }
 
     }

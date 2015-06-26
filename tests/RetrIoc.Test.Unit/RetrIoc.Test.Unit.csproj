@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\ConfigVerifierTests.cs" />
     <Compile Include="Injection\AspxPageInjectorTests.cs" />
     <Compile Include="Fakes\Dep.cs" />
     <Compile Include="Fakes\FakeContainer.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Fakes\TestPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Configuration\RetrIocConfigurationTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

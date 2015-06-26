@@ -42,6 +42,7 @@
     <Compile Include="Configuration\ConfigVerifier.cs" />
     <Compile Include="Injection\IResolveTypes.cs" />
     <Compile Include="Injection\InjectAttribute.cs" />
+    <Compile Include="Injection\InjectionMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Configuration\RetrIocConfiguration.cs" />
     <Compile Include="Configuration\RetrIocNotAddedException.cs" />
