@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Web;
 using System.Web.UI;
+using RetrIoc.Configuration;
+using RetrIoc.Injection;
 
 namespace RetrIoc
 {
@@ -31,39 +33,20 @@ namespace RetrIoc
         {
         }
 
-        public void Dispose()
+        public static void ConfigureWith(IResolveTypes binding)
         {
-        }
-
-        public static void ConfigureWith(IContainerBinding binding)
-        {
-            AssertModuleInstalled();
+            ConfigVerifier.AssertModuleExists(HttpContext.Current.ApplicationInstance);
             _aspxPageInjector = new AspxPageInjector(new RetrIocConfiguration(binding));
         }
 
         public static void ConfigureWith(RetrIocConfiguration config)
         {
-            AssertModuleInstalled();
+            ConfigVerifier.AssertModuleExists(HttpContext.Current.ApplicationInstance);
             _aspxPageInjector = new AspxPageInjector(config);
         }
 
-        public static void AssertModuleInstalled()
+        public void Dispose()
         {
-            var httpApps = HttpContext.Current.ApplicationInstance;
-            var httpModuleCollections = httpApps.Modules;
-            var found = false;
-            foreach (var activeModule in httpModuleCollections.AllKeys)
-            {
-                if (activeModule.Contains("RetrIoc"))
-                {
-                    found = true;
-                }
-            }
-
-            if (!found)
-            {
-                throw new RetrIocNotAddedException();
-            }
         }
     }
 }

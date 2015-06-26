@@ -1,8 +1,10 @@
 ﻿using System;
 using NUnit.Framework;
+using RetrIoc.Configuration;
+using RetrIoc.Injection;
 using RetrIoc.Test.Unit.Fakes;
 
-namespace RetrIoc.Test.Unit
+namespace RetrIoc.Test.Unit.Injection
 {
     [TestFixture]
     public class AspxPageInjectorTests
@@ -46,7 +48,7 @@ namespace RetrIoc.Test.Unit
         [Test]
         public void InjectInto_WithNoContainer_Throws()
         {
-            _cfg.ContainerBindings = null;
+            _cfg.TypeResolver = null;
         
             var ex = Assert.Throws<InvalidOperationException>(() => _module.InjectInto(_somePage));
 

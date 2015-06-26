@@ -1,4 +1,5 @@
 using System.Web.UI;
+using RetrIoc.Injection;
 
 namespace RetrIoc.Test.Unit.Fakes
 {

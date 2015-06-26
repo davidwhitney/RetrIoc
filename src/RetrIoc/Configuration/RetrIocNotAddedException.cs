@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RetrIoc
+namespace RetrIoc.Configuration
 {
     public class RetrIocNotAddedException : Exception
     {

@@ -1,9 +1,9 @@
 using System;
-using RetrIoc;
+using RetrIoc.Injection;
 
 namespace WebFormsApp
 {
-    public class ActivatorContainer : IContainerBinding
+    public class ActivatorContainer : IResolveTypes
     {
         public object Resolve(Type type)
         {

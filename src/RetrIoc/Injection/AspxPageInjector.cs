@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Web.UI;
+using RetrIoc.Configuration;
 
-namespace RetrIoc
+namespace RetrIoc.Injection
 {
     public class AspxPageInjector
     {
@@ -18,7 +19,7 @@ namespace RetrIoc
 
         public void InjectInto(Control control)
         {
-            if (_cfg.ContainerBindings == null)
+            if (_cfg.TypeResolver == null)
             {
                 throw new InvalidOperationException("Please configure your container bindings.");
             }
@@ -26,7 +27,7 @@ namespace RetrIoc
             var injectTheseProperties = GetProperties(control.GetType());
             foreach (var property in injectTheseProperties)
             {
-                var instance = _cfg.ContainerBindings.Resolve(property.PropertyType);
+                var instance = _cfg.TypeResolver.Resolve(property.PropertyType);
                 property.SetValue(control, instance, null);
             }
 

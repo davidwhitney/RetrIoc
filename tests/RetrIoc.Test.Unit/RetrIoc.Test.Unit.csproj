@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AspxPageInjectorTests.cs" />
+    <Compile Include="Injection\AspxPageInjectorTests.cs" />
     <Compile Include="Fakes\Dep.cs" />
     <Compile Include="Fakes\FakeContainer.cs" />
     <Compile Include="Fakes\FakeUserControl.cs">

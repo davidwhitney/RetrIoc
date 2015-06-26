@@ -1,8 +1,9 @@
 using System;
+using RetrIoc.Injection;
 
 namespace RetrIoc.Test.Unit.Fakes
 {
-    public class FakeContainer : IContainerBinding
+    public class FakeContainer : IResolveTypes
     {
         public object Resolve(Type type)
         {

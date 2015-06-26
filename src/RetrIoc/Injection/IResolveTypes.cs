@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace RetrIoc
+namespace RetrIoc.Injection
 {
-    public interface IContainerBinding
+    public interface IResolveTypes
     {
         object Resolve(Type type);
         object ResolveAll(Type type);

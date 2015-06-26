@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web.UI;
-using RetrIoc;
+using RetrIoc.Injection;
 
 namespace WebFormsApp
 {
