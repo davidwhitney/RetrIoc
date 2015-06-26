@@ -9,11 +9,6 @@ namespace RetrIoc
         private HttpApplication _context;
         private static AspxPageInjector _aspxPageInjector;
 
-        public static void ConfigureWith(RetrIocConfiguration config)
-        {
-            _aspxPageInjector = new AspxPageInjector(config);
-        }
-
         public void Init(HttpApplication context)
         {
             _context = context;
@@ -38,6 +33,37 @@ namespace RetrIoc
 
         public void Dispose()
         {
+        }
+
+        public static void ConfigureWith(IContainerBinding binding)
+        {
+            AssertModuleInstalled();
+            _aspxPageInjector = new AspxPageInjector(new RetrIocConfiguration(binding));
+        }
+
+        public static void ConfigureWith(RetrIocConfiguration config)
+        {
+            AssertModuleInstalled();
+            _aspxPageInjector = new AspxPageInjector(config);
+        }
+
+        public static void AssertModuleInstalled()
+        {
+            var httpApps = HttpContext.Current.ApplicationInstance;
+            var httpModuleCollections = httpApps.Modules;
+            var found = false;
+            foreach (var activeModule in httpModuleCollections.AllKeys)
+            {
+                if (activeModule.Contains("RetrIoc"))
+                {
+                    found = true;
+                }
+            }
+
+            if (!found)
+            {
+                throw new RetrIocNotAddedException();
+            }
         }
     }
 }

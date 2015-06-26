@@ -384,8 +384,8 @@ intellisense.annotate(jQuery, {
   },
   'type': function() {
     /// <signature>
-    ///   <summary>Determine the internal JavaScript [[Class]] of an object.</summary>
-    ///   <param name="obj" type="Object">Object to get the internal JavaScript [[Class]] of.</param>
+    ///   <summary>Determine the internal JavaScript [[RandomDependency]] of an object.</summary>
+    ///   <param name="obj" type="Object">Object to get the internal JavaScript [[RandomDependency]] of.</param>
     ///   <returns type="String" />
     /// </signature>
   },

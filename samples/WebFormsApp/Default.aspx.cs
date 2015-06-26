@@ -7,7 +7,7 @@ namespace WebFormsApp
     public partial class _Default : Page
     {
         [Inject]
-        public MyClass Class { get; set; }
+        public MyClass RandomDependency { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -17,6 +17,11 @@ namespace WebFormsApp
 
     public class MyClass
     {
-        
+        public string Id { get; set; }
+
+        public MyClass()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
     }
 }

@@ -37,7 +37,6 @@ namespace RetrIoc.Test.Unit
         public void InjectInto_PageWithUserControl_InjectsIntoUserControl()
         {
             var pageWithUc = new PageWithControl();
-            pageWithUc.Controls.Add(pageWithUc.Control);
 
             _module.InjectInto(pageWithUc);
 
