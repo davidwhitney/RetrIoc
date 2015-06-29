@@ -33,7 +33,8 @@ Given the following WebForms page:
 ```csharp
 public class TestPage : Page
 {
-  public Dep SomeUserControl { get; set; }
+  public Dep SomeDependency { get; set; }
+  private Dep2 _someOtherDependency;
 }
 ```
 
@@ -90,6 +91,9 @@ To enable DI simply add the `Inject` attribute to your code - using our previous
 public class TestPage : Page
 {
   [Inject]
-  public Dep SomeUserControl { get; set; }
+  public Dep SomeDependency { get; set; }
+  
+  [Inject]
+  private Dep2 _someOtherDependency;
 }
 ```
