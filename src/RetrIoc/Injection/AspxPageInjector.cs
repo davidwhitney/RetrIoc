@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Web.UI;
 using RetrIoc.Configuration;
 
@@ -28,8 +29,8 @@ namespace RetrIoc.Injection
             var injectTheseProperties = _injectionMap.Lookup(control.GetType());
             foreach (var property in injectTheseProperties)
             {
-                var instance = _cfg.TypeResolver.Resolve(property.PropertyType);
-                property.SetValue(control, instance, null);
+                var instance = _cfg.TypeResolver.Resolve(property.Type);
+                property.SetValue(control, instance);
             }
 
             foreach (var child in GetControlTree(control))
@@ -49,6 +50,5 @@ namespace RetrIoc.Injection
                 }
             }
         }
-
     }
 }
