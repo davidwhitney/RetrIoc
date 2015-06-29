@@ -10,7 +10,6 @@ namespace RetrIoc.Test.Unit.Fakes
         {
             Control = new FakeUserControl();
             Controls.Add(Control);
-
         }
     }
 }

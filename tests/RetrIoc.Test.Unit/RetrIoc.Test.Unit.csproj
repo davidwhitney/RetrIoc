@@ -43,6 +43,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\ConfigVerifierTests.cs" />
+    <Compile Include="Fakes\FakeUserControlWithControl.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Fakes\PageWithControlWithControl.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Injection\AspxPageInjectorTests.cs" />
     <Compile Include="Fakes\Dep.cs" />
     <Compile Include="Fakes\FakeContainer.cs" />

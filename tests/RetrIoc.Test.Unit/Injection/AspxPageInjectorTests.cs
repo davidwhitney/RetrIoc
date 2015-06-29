@@ -67,6 +67,16 @@ namespace RetrIoc.Test.Unit.Injection
         }
 
         [Test]
+        public void InjectInto_PageWithUserControlWithControls_InjectsIntoChildUserControl()
+        {
+            var pageWithUc = new PageWithControlWithControl();
+
+            _module.InjectInto(pageWithUc);
+
+            Assert.That(pageWithUc.Control.InnerControl.Class, Is.Not.Null);
+        }
+
+        [Test]
         public void InjectInto_WithNoContainer_Throws()
         {
             _cfg.TypeResolver = null;
