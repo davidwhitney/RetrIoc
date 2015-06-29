@@ -1,0 +1,1 @@
+.nuget\nuget pack "src\RetrIoc\RetrIoc.csproj" -OutputDirectory artifacts -IncludeReferencedProjects -NonInteractive
