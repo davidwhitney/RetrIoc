@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Web.UI;
 using RetrIoc.Configuration;
 
@@ -30,6 +29,12 @@ namespace RetrIoc.Injection
             foreach (var property in injectTheseProperties)
             {
                 var instance = _cfg.TypeResolver.Resolve(property.Type);
+
+                if (instance == null)
+                {
+                    System.Diagnostics.Debug.WriteLine("Attempt to inject value into member " + property.UnderlyingValue.Name + " resulted in a NULL.");
+                }
+
                 property.SetValue(control, instance);
             }
 

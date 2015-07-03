@@ -10,6 +10,7 @@ namespace RetrIoc.Injection
         {
             if (!ContainsKey(type))
             {
+                System.Diagnostics.Debug.WriteLine("Populating InjectionMap for " + type.FullName + " for the first time.");
                 PopulateMapForType(type);
             }
 
@@ -28,10 +29,16 @@ namespace RetrIoc.Injection
                 foreach (var attr in allAttributesOnProperty)
                 {
                     if (attr.GetType() != typeof(InjectAttribute)) continue;
-                    members.Add(new ExtendedMemberInfo(pi));
+                    
+                    var emi = new ExtendedMemberInfo(pi);
+                    members.Add(emi);
+
+                    System.Diagnostics.Debug.WriteLine("Member: " + pi.Name + "\r\nType: " + emi.Type.ToString() + "\r\n------");
                     break;
                 }
             }
+
+            System.Diagnostics.Debug.WriteLine("Discovered " + members.Count + " members marked for injection.");
 
             this[type] = members;
         }
