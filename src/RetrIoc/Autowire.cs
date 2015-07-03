@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.UI;
 using RetrIoc.Configuration;
@@ -43,6 +44,20 @@ namespace RetrIoc
         {
             ConfigVerifier.AssertModuleExists(HttpContext.Current.ApplicationInstance);
             _aspxPageInjector = new AspxPageInjector(config);
+        }
+
+        #if NET4
+        public static void ConfigureWith(Func<Type, object> getType, 
+            Func<Type, IEnumerable<object>> getAllTypes,
+            Action<object> releaseInstance)
+        {
+            _aspxPageInjector = new AspxPageInjector(new RetrIocConfiguration(new ContainerShim(getType, getAllTypes, releaseInstance)));
+        }
+        #endif
+
+        public static bool IsEnabled
+        {
+            get { return ConfigVerifier.IsEnabled(HttpContext.Current.ApplicationInstance); }
         }
 
         public void Dispose()

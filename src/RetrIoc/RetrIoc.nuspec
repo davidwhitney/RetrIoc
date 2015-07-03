@@ -14,5 +14,6 @@
 		</frameworkAssemblies>
 	</metadata> 	
 	<files>
+		<file src="bin\Debug\*.NET4.*" target="lib\net40" /> 
 	</files>  
 </package>
